@@ -1,0 +1,18 @@
+1. PHILOSOPHY
+	1. Do More With Less
+	2. Responsive Design
+	3. Cross-Browser Support
+	4. Great isn't good enough
+2. RATES
+	1. Web Space
+	2. Traffic
+	3. Email IDs
+	4. Design
+3. PORTFOLIO
+	1. Spookybin
+	2. iKitchen
+	3. XeQt
+4. CONTACT
+	1. Map
+	2. Phone
+	3. Mail

@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face
+{
+font-family: Interstate;
+src:url(Interstate%20Black.ttf);
+}
+@font-face
+{
+font-family: Karnivore;
+src:url(Karnivore-Lite/KARNIVOB.ttf);
+}
+body{
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+#mother-wrapper{
+	width:150%;
+	position:absolute;
+	left:-25%;
+}
+
+.layer{
+	height:100%;
+	width:100%;
+	position:absolute;
+}
+#logo{
+	position:absolute;
+}
+.widget{
+	position:absolute;
+	background-color:#fff;
+	text-align:center;
+	padding-top:4%;
+	border: 2px solid #000;
+	font-family:Interstate;
+}
+#layer1 .widget{
+	width:12.5%;
+	height:12.5%;
+	left:50%;
+}
+#layer2 .widget, #layer3 .widget{
+	width:8%;
+	height:8%;
+}
+/*layer1 widget alignment*/
+#philosophy, #rates{
+	margin-left:-20%;
+}
+#portfolio, #contact{
+	margin-left:7.5%;
+}
+#portfolio, #philosophy{
+	top:5%;
+}
+#rates, #contact{
+	bottom:5%;
+}
