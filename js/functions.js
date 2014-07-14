@@ -3,9 +3,14 @@ var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 $(document).ready(function() {
     $('#mother-wrapper').height(h);
+	//$('body').height(h);
 	init_positions();
+	alert(tv);
+	alert(tv.length);
+	dropdown();
 });
 var temp;
+var tv=[5,5,65,65],lv=[];
 function init_positions(){
 		$('.sub').each(function() {
 			temp=Math.random();
@@ -15,24 +20,21 @@ function init_positions(){
 				$(this).addClass('layer3');
 			else
 				$(this).addClass('layer4');
-/*			$(this).css('transform','translateZ('+ (-200- Math.random()*200) +'px)');
-			$(this).css('-webkit-transform','translateZ('+ (-2000- Math.random()*1000)+'px)');
-			$(this).css('-moz-transform','translateZ('+ (-200- Math.random()*200) +'px)');
-			$(this).css('-ms-transform','translateZ('+ (-200- Math.random()*200) +'px)');*/
-			$(this).css('top',(0.92*h)*Math.random()+'px');
+			$.merge(tv,[(0.8*h)*Math.random()]);
+			$(this).css('top',(0.8*h)*Math.random()+'px');
         });
 		
 		$('.philosophy-widget').each(function(index, element) {
-            $(this).css('left',-10 + Math.random()*30+"%");
+            $(this).css('left',-20 + Math.random()*30+"%");
         });
 		$('.rates-widget').each(function(index, element) {
-            $(this).css('left',-10 + Math.random()*30+"%");
+            $(this).css('left',-20 + Math.random()*30+"%");
         });
 		$('.portfolio-widget').each(function(index, element) {
-            $(this).css('left',75 + Math.random()*30+"%");
+            $(this).css('left',70 + Math.random()*30+"%");
         });
 		$('.contact-widget').each(function(index, element) {
-            $(this).css('left',75 + Math.random()*30+"%");
+            $(this).css('left',70 + Math.random()*30+"%");
         });
 		
 }
@@ -43,28 +45,24 @@ $('#mother-wrapper').mousemove(function(e) {
 	$(this).css('webkit-transform','rotateY('+ (e.pageX-w/2)/factor +'deg)');
 	$(this).css('-moz-transform','rotateY('+ (e.pageX-w/2)/factor +'deg)');
 	$(this).css('-ms-transform','rotateY('+ (e.pageX-w/2)/factor +'deg)');
-	$(this).css('-o-transform','rotateY('+ (e.pageX-w/2)/factor +'deg)');
 });
-/*
-$('.philosophy-widget').mouseenter(function(){
 
-	$('.philosophy-widget').each(function(index, element) {
-        $(this).addClass('hovered');
+function dropdown(){
+	$('.widget').css('margin-top','-100%');	
+	$('.widget').each(function(index, element) {
+        temp=Math.random();
+		$(this).animate({marginTop:0},500+2000*temp,"easeOutCubic");
     });
-});
-$('.philosophy-widget').mouseleave(function(){
-
-	$('.philosophy-widget').each(function(index, element) {
-        $(this).removeClass('hovered');
-    });
-});*/
-
+}
 /*hover effects*/
 $('.widget').mouseenter(function(e) {
     var id=$(this).attr('id');
 	id=id.substring(0,id.length-1);
 	temp=id+'0';							//get group class
 	$('#'+temp).addClass('hovered');
+	//flip the main box
+	//$('#'+temp + " .content-wrapper").css('animation','flip 0.5s forwards');
+	$('#'+temp + " .content-wrapper").toggleClass('flip');
 	id=id+"-widget";
 	$('.'+id).each(function(index, element) {	//add class hovered
         $(this).addClass('hovered');
@@ -88,6 +86,8 @@ $('.widget').mouseleave(function(e) {
 	id=id.substring(0,id.length-1);
 	temp=id+'0';
 	$('#'+temp).removeClass('hovered');
+	//$('#'+temp+" .content-wrapper").css('animation','flipback 0.5s forwards');
+	$('#'+temp + " .content-wrapper").toggleClass('flip');
 	id=id+"-widget";
 	$('.'+id).each(function(index, element) {
         $(this).removeClass('hovered');
@@ -104,4 +104,12 @@ $('.widget').mouseleave(function(e) {
 		else
 			$(this).removeClass('dimmed-main');
     });
+});
+
+/*$('.widget').click(function(e) {
+   	alert("hi"); 
+});*/
+var stack=["null","null"];
+$('.widget').click(function(e) {
+    
 });
