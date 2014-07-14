@@ -53,10 +53,10 @@ body{
 	-webkit-transition:0.5s ease-out;
 	-moz-transition:0.5s ease-out;
 	-ms-transition:0.5s ease-out;
-	transform-origin:50% 50%;
+/*	transform-origin:50% 50%;
 	-webkit-transform-origin:50% 50%;
 	-moz-transform-origin:50% 50%;
-	-ms-transform-origin:50% 50%;
+	-ms-transform-origin:50% 50%;*/
 	
 }
 
@@ -294,4 +294,42 @@ body{
 	-o-transform: rotateY(-180deg);
 	-ms-transform: rotateY(-180deg);
 	transform: rotateY(-180deg);
+}
+
+/*arrangement classes*/
+.active-top-left{
+	/*move the left main boxes to center.. current width 20%, gap from center 5%*/
+	transform:translateX(75%) translateY(100%) translateZ(0px) scale(1.1);
+	-webkit-transform:translateX(75%) translateY(100%) translateZ(0px) scale(1.1);
+	-moz-transform:translateX(75%) translateY(100%) translateZ(0px) scale(1.1);
+	-ms-transform:translateX(75%) translateY(100%) translateZ(0px) scale(1.1);
+	opacity:0.7;
+	 /*current height 30%*/
+}
+.active-bottom-left{
+	/*move the left main boxes to center.. current width 20%, gap from center 5%*/
+	transform:translateX(75%) translateY(-100%) translateZ(0px) scale(1.1);
+	-webkit-transform:translateX(75%) translateY(-100%) translateZ(0px) scale(1.1);
+	-moz-transform:translateX(75%) translateY(-100%) translateZ(0px) scale(1.1);
+	-ms-transform:translateX(75%) translateY(-100%) translateZ(0px) scale(1.1);
+	opacity:0.7;
+	 /*current height 30%*/
+}
+.active-top-right{
+	/*move the left main boxes to center.. current width 20%, gap from center 5%*/
+	transform:translateX(-75%) translateY(100%) translateZ(0px) scale(1.1);
+	-webkit-transform:translateX(-75%) translateY(100%) translateZ(0px) scale(1.1);
+	-moz-transform:translateX(-75%) translateY(100%) translateZ(0px) scale(1.1);
+	-ms-transform:translateX(-75%) translateY(100%) translateZ(0px) scale(1.1);
+	opacity:0.7;
+	 /*current height 30%*/
+}
+.active-bottom-right{
+	/*move the left main boxes to center.. current width 20%, gap from center 5%*/
+	transform:translateX(-75%) translateY(-100%) translateZ(0px) scale(1.1);
+	-webkit-transform:translateX(-75%) translateY(-100%) translateZ(0px) scale(1.1);
+	-moz-transform:translateX(-75%) translateY(-100%) translateZ(0px) scale(1.1);
+	-ms-transform:translateX(-75%) translateY(-100%) translateZ(0px) scale(1.1);
+	opacity:0.7;
+	 /*current height 30%*/
 }
