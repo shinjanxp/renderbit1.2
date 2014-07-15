@@ -19,10 +19,10 @@ body{
 		background-color:#333;
 		background-repeat:no-repeat;
 	background-size:cover;
-	background-image: linear-gradient(to bottom, rgba(51,51,51, 0.6), rgba(51,51,51, 0.6)), url("images/main-background.jpg");
-    background-image: -moz-linear-gradient(to bottom,rgba(51,51,51, 0.6), rgba(51,51,51, 0.6)), url("images/main-background.jpg");
-    background-image: -o-linear-gradient(to bottom, rgba(51,51,51, 0.6), rgba(51,51,51, 0.6)), url("images/main-background.jpg");
-    background-image: -ms-linear-gradient(to bottom, rgba(51,51,51, 0.6), rgba(51,51,51, 0.6)), url("images/main-background.jpg");
+	background-image: linear-gradient(to bottom, rgba(51,51,51, 0.6), rgba(51,51,51, 0.6)), url("../images/main-background.jpg");
+    background-image: -moz-linear-gradient(to bottom,rgba(51,51,51, 0.6), rgba(51,51,51, 0.6)), url("../images/main-background.jpg");
+    background-image: -o-linear-gradient(to bottom, rgba(51,51,51, 0.6), rgba(51,51,51, 0.6)), url("../images/main-background.jpg");
+    background-image: -ms-linear-gradient(to bottom, rgba(51,51,51, 0.6), rgba(51,51,51, 0.6)), url("../images/main-background.jpg");
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(51,51,51, 0.8)), to(rgba(51,51,51, 0.8))), url("../images/main-background.jpg");
     background-image: -webkit-linear-gradient(to bottom, rgba(51,51,51, 0.6), rgba(51,51,51, 0.6)), url("../images/main-background.jpg");
 }
@@ -40,33 +40,50 @@ body{
 	z-index:10;
 }
 .overlay{
-	background-color:#333;
-	width:100%;
-	opacity:0.9;
-	z-index:15;
+	/*background-color:#0d2541;*/
+	background-color:#000;
+	width:71.42%;
+	opacity:0;
 	display:none;
 	position:absolute;
+	left:50%;
+	margin-left:-35.71%;
+	transform:translateZ(5px);
+	-webkit-transform: translateZ(5px);
+	-moz-transform:translateZ(5px);
+	-ms-transform:translateZ(5px);
 }
 .overlay p{
 	width:100%;
 	height:20%;
 	margin:0 0 0 0;
-	top:50%;
 	color:#fff;
-	text-align:center;
 	position:absolute;
-	font-size:1000%;
+	font-size:500%;
 	font-family:Interstate;
 	text-transform:uppercase;
 	color:white;
-	z-index:15;
-	filter:blur(2px);
-	-webkit-filter:blur(10px);
-	-moz-filter:blur(2px);
-	-ms-filter:blur(2px);
+	filter:blur(5px);
+	-webkit-filter:blur(5px);
+	-moz-filter:blur(5px);
+	-ms-filter:blur(5px);
 }
 #logo{
 	position:absolute;
+}
+#cross{
+	position:absolute;
+	background-color:#111;
+	top:0%;
+	right:0%;
+	font-size:300%;
+	color:white;
+	display:none;
+	cursor:pointer;
+	transform:translateZ(10px);
+	-webkit-transform: translateZ(10px);
+	-moz-transform:translateZ(10px) ;
+	-ms-transform:translateZ(10px);
 }
 .widget{
 	position:absolute;
@@ -142,9 +159,11 @@ body{
 .front p{
 	position: absolute;
 	background-color: rgba(0,0,0,0.7);
+	margin:0 0 0 0;
+	height:30%;
 	color:white;
 	width: 100%;
-	top: 50%;
+	bottom:0;
 	font-size: 140%;
 }
 .sub .front p{
@@ -328,6 +347,7 @@ body{
 	-moz-transform:translateX(75%) translateY(100%) translateZ(0px) scale(1.1);
 	-ms-transform:translateX(75%) translateY(100%) translateZ(0px) scale(1.1);
 	opacity:0.7;
+	z-index:10;
 	 /*current height 30%*/
 }
 .active-bottom-left{
@@ -337,6 +357,7 @@ body{
 	-moz-transform:translateX(75%) translateY(-100%) translateZ(0px) scale(1.1);
 	-ms-transform:translateX(75%) translateY(-100%) translateZ(0px) scale(1.1);
 	opacity:0.7;
+	z-index:10;
 	 /*current height 30%*/
 }
 .active-top-right{
@@ -346,6 +367,7 @@ body{
 	-moz-transform:translateX(-75%) translateY(100%) translateZ(0px) scale(1.1);
 	-ms-transform:translateX(-75%) translateY(100%) translateZ(0px) scale(1.1);
 	opacity:0.7;
+	z-index:10;
 	 /*current height 30%*/
 }
 .active-bottom-right{
@@ -355,14 +377,22 @@ body{
 	-moz-transform:translateX(-75%) translateY(-100%) translateZ(0px) scale(1.1);
 	-ms-transform:translateX(-75%) translateY(-100%) translateZ(0px) scale(1.1);
 	opacity:0.7;
+	z-index:10;
 	 /*current height 30%*/
 }
 
 .active-sub{
-		transform:translateZ(0px) scale(0.8);
-	-webkit-transform: translateZ(0px) scale(0.8);
-	-moz-transform:translateZ(0px) scale(0.8);
-	-ms-transform:translateZ(0px) scale(0.8);
+		transform:translateZ(10px) scale(0.8);
+	-webkit-transform: translateZ(10px) scale(0.8);
+	-moz-transform:translateZ(10px) scale(0.8);
+	-ms-transform:translateZ(10px) scale(0.8);
+}
+.viewing{
+	transform:translateZ(20px) scale(3);
+	-webkit-transform: translateZ(20px) scale(3);
+	-moz-transform:translateZ(20px) scale(3);
+	-ms-transform:translateZ(20px) scale(3);
+	box-shadow: 5px 5px 5px #888888;
 }
 .inactive-widget{
 		position:absolute;
