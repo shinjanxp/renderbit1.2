@@ -2,8 +2,7 @@
 var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 $(document).ready(function() {
-    $('.mother-wrapper').height(h);
-	$('.overlay').height(h);
+    $('#mother-wrapper').height(h);
 	//$('body').height(h);
 	init_positions();
 	dropdown();
@@ -53,14 +52,11 @@ function init_positions(){
         });
 		
 }
-$('.mother-wrapper').on('mousemove',this,rotate);
-function rotate(e) {
+$('#mother-wrapper').mousemove(function(e) {
 	var factor=100;
 	prefix($(this),'transform','rotateY('+ (e.pageX-w/2)/factor +'deg)');
 /*	$('#portfolio0 .front p').html(e.pageX+","+e.pageY);
-*/};
-
-
+*/});
 
 function dropdown(){
 	$('.widget').css('margin-top','-100%');	
@@ -126,8 +122,7 @@ $('.widget').mouseleave(function(e) {
 });*/
 var stack=["null","null"];
 var head=-1;
-$('.widget').on('click',this,arrange);
-/*$('.widget').click(function(e) {
+$('.widget').click(function(e) {
 
     if(head==-1)
 	{
@@ -137,20 +132,13 @@ $('.widget').on('click',this,arrange);
 	{
 		view();
 	}
-});*/
+});
 
-function arrange()
+function arrange(t)
 {
-	t=$(this);
 	var type=t.attr('id');
 	type=type.substring(0,type.length-1);
 	var nodes=$('.'+type+'-widget');
-		//remove widget handlers from all elements
-	$('.widget').off('click').off('mouseenter').off('mouseleave');
-	$('.overlay').css('display','block');
-	$('.overlay p').html(type);
-	$('.mother-wrapper').off("mousemove");
-	$('.sub .front p').slideToggle(500,"easeOutCubic");
 /*	nodes.each(function(index, element) {
 	alert($(this).attr('id'));
     });*/
@@ -167,24 +155,25 @@ function arrange()
 	var x,y,z,index,radius,n,angle;
 	n=$('.'+type+'-widget').length;
 	angle=360/n;
-	radius=1.2*Math.min($(temp).width(),$(temp).height());
+	radius=Math.min($(temp).width(),$(temp).height());
 	$('.'+type+'-widget').each(function(i, element) {
 		x=0;y=0;z=0;
        index=$('.widget').index(this);
 		x=radius*Math.cos(Math.PI/180*(90+i*angle));
 		y=radius*Math.sin(Math.PI/180*(90+i*angle));
-		x=x+0.5*1.4*w;
+		x=x+0.5*w;
 		y=-y+0.5*h;
 /*		alert(x+","+y);*/
-		x=x-0.5*$(this).width();
-		y=y-0.5*$(this).height();
-		$(this).addClass('active-sub');
-		$(this).animate({left:x, top:y},500,"easeOutCubic")
-		$(this).css('z-index',20);
+		x=x-0.8*0.5*$(this).width();
+		y=y-0.8*0.5*$(this).height();
+		//alert(x+","+y);
+		/*
+		x=x-lv[index]*w/100;
+		y=y-tv[index];
+		prefix($(this),"transform","translateX("+x+"px) translateY("+y+"px) translateZ(0px) scale(0.8)");
+		*/$(this).addClass('active-sub');
+		$(this).animate({left:x; top:y},500,"easeOutCubic");
     });
-	
-
-
 }
  /*alert($(this).attr('id'));
  
