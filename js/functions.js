@@ -8,24 +8,24 @@ $(document).ready(function() {
 	$('.overlay').height(h);
 	//$('body').height(h);
 	init_positions();
-	dropdown();
+	//dropdown();
 });
 var temp;
-var tv=[5,5,65,65],lv=[50,50,50,50],yrot=[],xrot=[];
+/*var tv=[140,140,h-80,h-80],lv=[50,50,50,50],yrot=[],xrot=[];
 var zv=[];
 var radius=[300,350,400,450];
-var scale=[1,0.5,0.4,0.3];
+var scale=[1,0.5,0.4,0.3];*/
 function prefix(t,p,v){
 	$(t).css(p,v);
 	$(t).css("-webkit-"+p,v);
 	$(t).css("-moz-"+p,v);
 	$(t).css("-ms-"+p,v);
 }
-function init_positions(){
-	$('#philosophy0').css('left',perc*w/2-200+'px');
-	$('#rates0').css('left',perc*w/2-200+'px');
-	$('#portfolio0').css('left',perc*w/2+200+'px');
-	$('#contact0').css('left',perc*w/2+200+'px');
+/*function init_positions(){
+	$('#philosophy0').css('left',lv[0]=perc*w/2-200+'px');
+	$('#rates0').css('left',lv[1]=perc*w/2-200+'px');
+	$('#portfolio0').css('left',lv[2]=perc*w/2+200+'px');
+	$('#contact0').css('left',lv[3]=perc*w/2+200+'px');
 	prefix($('.active-top-left'),'transform','translateX('+200+'px) translateY('+w/2-$('#philosophy').css('top')+'px) translateZ(0px) scale(1.1)');
 	prefix($('.active-top-right'),'transform','translateX(-'+200+'px) translateY('+w/2-$('#portfolio').css('top')+'px) translateZ(0px) scale(1.1)');
 	prefix($('.active-bottom-left'),'transform','translateX('+200+'px) translateY(-'+w/2-$('#rates').css('bottom')+'px) translateZ(0px) scale(1.1)');
@@ -68,12 +68,13 @@ function init_positions(){
 		curve();
 		$('#logo').off();
 		
-}
+}*/
 function curve(){
 			var r,p,c=w/2,degy,degx,layer,z;
+			//alert('curving');
 	$('.widget').each(function(index, element) {
 		var id=$(this).attr('id');
-		
+		//alert(id);
 		if($(this).hasClass('layer2'))
 			layer=1;
 		else if($(this).hasClass('layer3'))
@@ -102,10 +103,10 @@ function curve(){
 		//prefix($('#'+id+" .content-wrapper"),'transform','rotateY('+degy+'deg) rotateX('+degx+'deg) ');
     });	
 }
-$('.mother-wrapper').on('mousemove',this,rotate);
-function rotate(e) {
-	var factor=100;
-	prefix($(this),'transform','rotateY('+ (e.pageX-perc*w/2)/factor +'deg)');
+$('.mother-wrapper').on('mousemove',this,revolve);
+function revolve(e) {
+	var factor=30;
+	prefix($(this),'transform','rotateY('+ (e.pageX-w/2)/factor +'deg)');
 	//$('#portfolio0 .front p').html(e.pageX+","+e.pageY);
 };
 
@@ -136,7 +137,7 @@ function inmouse(e) {
     });
 	
 	/*dim everything else*/
-	$('.widget').not('.hovered').each(function(index, element) {
+	$('.widget').not('.hovered').not('#logo').each(function(index, element) {
         if($(this).hasClass('layer2'))
 			$(this).addClass('dimmed-layer2');
 		else if($(this).hasClass('layer3'))
@@ -189,14 +190,14 @@ function arrange()
 	$('.mother-wrapper').off("mousemove");
 	
 	temp='#'+type+'0';
-	if(temp=="#philosophy0")
+/*	if(temp=="#philosophy0")
 		$(temp).addClass('active-top-left');
 	if(temp=="#rates0")
 		$(temp).addClass('active-bottom-left');
 	if(temp=="#portfolio0")
 		$(temp).addClass('active-top-right');
 	if(temp=="#contact0")
-		$(temp).addClass('active-bottom-right');
+		$(temp).addClass('active-bottom-right');*/
 
 	var x,y,z,index,radius,n,angle;
 	n=$('.'+type+'-widget').length;
@@ -213,7 +214,8 @@ function arrange()
 /*		alert(x+","+y);*/
 /*		x=x-0.5*$(this).width();
 		y=y-0.5*$(this).height();*/
-		$(this).addClass('active-sub');
+		//$(this).addClass('active-sub');
+		prefix($(this),'transform','translateZ(10px) rotateY(0deg) rotateX(0deg) scale(0.8)');
 		$(this).animate({left:x, top:y},500,"easeOutCubic",function(){
 					$(this).on('click',this,zoomin);
 			});
@@ -228,7 +230,20 @@ $('.sub .front p').slideToggle(500,"easeOutCubic");
 
 //$('#cross').click(rearrange);
 $('.overlay').click(rearrange);
-
+function getlayer(t)
+{	
+	var layer;
+	if($(t).hasClass('layer2'))
+			layer=1;
+		else if($(t).hasClass('layer3'))
+			layer=2;
+		else if($(t).hasClass('layer4'))
+			layer=3;
+		else
+			layer=0;
+	//alert($(t).attr('id')+" "+layer);
+	return layer;
+}
 function rearrange(){
 	$('.overlay').animate({opacity:0},500,"easeOutCubic");
 	$('.sub .front p').slideToggle(500,"easeOutCubic");
@@ -239,7 +254,9 @@ function rearrange(){
        index=$('.widget').index(this);
 		x=lv[index];
 		y=tv[index];
-		$(this).removeClass('active-sub').removeClass('hovered');
+		$(this).removeClass('hovered');
+		var layer=getlayer($(this));
+		prefix($(this),'transform','translateZ(-'+zv[index]+'px) scale('+scale[layer]+') rotateY('+yrot[index]+'deg) rotateX('+xrot[index]+'deg) ');
 		$(this).animate({left:x, top:y},500,"easeOutCubic");
     });
 	temp='#'+type+'0';

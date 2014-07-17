@@ -4,145 +4,180 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 </style>	<style type="text/css">
-
-		/* simple */
-		.main {
-/*			-webkit-perspective: 1000;
-			-moz-perspective: 1000;
-			-ms-perspective: 1000;
-			perspective: 1000;
-
-			-ms-transform: perspective(1000px);
-			-moz-transform: perspective(1000px);*/
-    			-moz-transform-style: preserve-3d; 
-    			-ms-transform-style: preserve-3d; 
-
-			border: 1px solid #ccc;
-		}
-
-			/*
-			.main:hover .content-wrapper, .main.hover .content-wrapper, #flip-toggle.flip .content-wrapper {
-				-webkit-transform: rotateY(180deg);
-				-moz-transform: rotateY(180deg);
-				-ms-transform: rotateY(180deg);
-				transform: rotateY(180deg);
-				filter: FlipH;
-    			-ms-filter: "FlipH";
-			}
-			*/
-
-
-			/* START: Accommodating for IE */
-			.flip .back {
-    -webkit-transform: rotateY(0deg);
-    -moz-transform: rotateY(0deg);
-    -o-transform: rotateY(0deg);
-    -ms-transform: rotateY(0deg);
-    transform: rotateY(0deg);
+/* Container 3D is the div wich contain all our segments */
+#container3d {
+    /* We have to set Transform stlye, perspective and its origin */
+    -webkit-transform-style:preserve-3d;
+    -webkit-perspective:0px;
+    -webkit-perspective-origin:center center;
+    /* Optional rules, used here for the container (sphere) rotation */
+    -webkit-transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    -webkit-transition-property:-webkit-transform;
+    -webkit-transition-duration:6s;
+    /* Same rules for Firefox */
+    -moz-transform-style:preserve-3d;
+    -moz-perspective:1200;
+    -moz-perspective-origin:center center;
+    -moz-transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    -moz-transition-property:-moz-transform;
+    -moz-transition-duration:6s;
+    /* Its sizes */
+    margin:0 auto;
+    width:800px;
+    height:700px;
 }
+#tester{
+	height: 40px;
 
-.flip .front {
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
-    transform: rotateY(180deg);
 }
-		
-		/* END: Accommodating for IE */
-
-		.main{
-			width:320px;
-			height:500px;
-		}
-		 .front, .back {
-			width: 100%;
-			height: 100%;
-		}
-
-		.content-wrapper {
-			-webkit-transition: 0.6s;
-			-webkit-transform-style: preserve-3d;
-			-ms-transition: 0.6s;
-
-			-moz-transition: 0.6s;
-			-moz-transform: perspective(1000px);
-			-moz-transform-style: preserve-3d;
-			-ms-transform-style: preserve-3d;
-
-			transition: 0.6s;
-			transform-style: preserve-3d;
-
-			position: relative;
-			width:100%;
-			height:100%;
-		}
-
-		.front, .back {
-			-webkit-backface-visibility: hidden;
-			-moz-backface-visibility: hidden;
-			-ms-backface-visibility: hidden;
-			backface-visibility: hidden;
-
-		    -webkit-transition: 0.6s;
-		    -webkit-transform-style: preserve-3d;
-
-		    -moz-transition: 0.6s;
-		    -moz-transform-style: preserve-3d;
-
-		    -o-transition: 0.6s;
-		    -o-transform-style: preserve-3d;
-
-		    -ms-transition: 0.6s;
-		    -ms-transform-style: preserve-3d;
-
-		    transition: 0.6s;
-		    transform-style: preserve-3d;
-
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
-
-		.front {
-			-webkit-transform: rotateY(0deg);
-			-ms-transform: rotateY(0deg);
-			background: lightgreen;
-			z-index: 2;
-		}
-
-		.back {
-			background: #474;
-			-webkit-transform: rotateY(-180deg);
-		    -moz-transform: rotateY(-180deg);
-		    -o-transform: rotateY(-180deg);
-		    -ms-transform: rotateY(-180deg);
-		    transform: rotateY(-180deg);
-		}
-
-
+/* div.faces is a small segment */
+.face {
+    /* Set properties that should be animated with transition property */
+    -webkit-transition-property:-webkit-transform opacity border-radius;
+    -webkit-transition-timing-function:ease;
+    /* Scale set to 0 to get the effect like sphere is creating from the point */
+    -webkit-transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0, 0, 0) translate3d(0px, 0px, 0px);
+    -webkit-backface-visibility:visible;
+    /* Same rules for Firefox */
+    -moz-transition-property:-moz-transform opacity border-radius;
+    -moz-transition-delay:0.3s;
+    -moz-transition-timing-function:ease;
+    -moz-transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale3d(0, 0, 0) translate3d(0px, 0px, 0px);
+    -moz-backface-visibility:visible;
+    /* Just for styling */
+    background:red;
+    color:#fff;
+    text-align:center;
+    font-size:12px;
+    opacity:1;
+    border-radius:0px;
+    /* 
+        Very important note. All segments (faces) must be set to the same place and have the same position! 
+        The imaginary grid above where used just for the understanding of its parameters, so actually all faces should have the same position!
+    */
+    position:absolute;
+    left:50%;
+    top:50%;
+     
+}
 
 	</style>
 </head>
 
 <body>
-<h2>Styled Card (Horizontal Flip)</h2>
-	<div class="main" >
-		<div class="content-wrapper">
-			<div class="front" style="background: url(images/main-background.jpg) 0 0 no-repeat;">
-				<span class="name">David Walsh</span>
-			</div>
-			<div class="back" >
-				<div class="back-title">@davidwalshblog</div>
-				<p>Mozilla Web Developer, MooTools & jQuery Consultant, MooTools Core Developer, Javascript Fanatic, CSS Tinkerer, PHP Hacker, and web lover.</p>
-			</div>
-		</div>
-	</div>
-    <button onclick="clicked()">Click</button>
+<div id="container3d">
+  <!-- Sphere segments will be inserted right here by script -->
+</div>
+<div id="tester"></div>
 </body>
 <script src="js/jquery-1.11.1.js"></script>
 <script>
-function clicked(){
-	$('.content-wrapper').toggleClass('flip');
+var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+$(document).ready(function() {
+    buildSphere();
+});
+function buildSphere(params) {
+    //Default Options
+    //params - is an object which is creating depending on the FORM fields' values
+    if (!params) var params = {};
+    var vSegments = params.vSegments||4;
+    var hSegments = params.hSegments||4;
+    var radius = params.radius || 500;
+    var duration = params.duration || 5000;
+    var backfaceVisibility = params.backfaceVisibility || "visible";
+    var delay = params.delay || 10;
+    var faceWidth = params.faceWidth || 320;
+    var faceHeight = params.faceHeight || 180;
+    var faceText = params.faceText || "";
+    var faceOpacity = params.faceOpacity || 1;
+    var faceBorderRadius = params.faceBorderRadius || 0;
+     
+    // Get our #container3d
+    var container = document.getElementById("container3d");
+    var containerHTML = "";
+     
+    //Now we need to add vSegments*hSegments number of .face divs inside of #container3d
+    for (var i = 1; i <= vSegments*hSegments; i++) {
+        containerHTML+='<div class="face">'+faceText+'</div>';  
+    }
+     
+    container.innerHTML=containerHTML;
+     
+    //All faces
+    var faces = document.querySelectorAll('.face')
+     
+    //Now we need to apply all transforms parameters for the each face
+    for (var i=0; i<=faces.length-1; i++) {
+        /*
+        i - index number of Face
+        vIndex - vertical index number in faces grid
+        hIndex - horizontal index nmber in faces grid
+        */
+        var hIndex = i - Math.floor(i/hSegments)*hSegments;
+        var vIndex = Math.floor(i/hSegments);
+         
+        //Faces X and Y rotate angles
+        var newX = 180/(vSegments)*vIndex/2;
+        var newY = 180/(hSegments)*hIndex;
+        //var newX= -10+Math.random()*20;
+        //var newY=-20+Math.random()*40;
+         //alert(newX+","+newY);
+        //Faces Background Color
+        var color = i%2==0?"#b00404":"#d13535"
+         
+        //Face Styling
+        var face = faces.item(i)
+        var faceStyle = face.style
+         
+        /* Styling */
+        faceStyle.width = faceWidth+"px";
+        faceStyle.height = faceHeight+"px";
+        faceStyle.opacity = faceOpacity;
+        faceStyle.borderRadius = faceBorderRadius+"px";
+        faceStyle.backgroundColor = color;
+        /* End of styling */
+         
+        /* For Webkit */
+
+            faceStyle.webkitBackfaceVisibility = backfaceVisibility
+            /* Set new transition duration, delay and faces transform to start animation: */
+            faceStyle.webkitTransitionDuration = duration/1000+"s";
+            faceStyle.webkitTransitionDelay = i*delay/1000+"s";
+                //Actually translateZ is the variable that determines the radius of the sphere!
+            faceStyle.webkitTransform = "rotateX("+newX+"deg) rotateY("+newY+"deg) rotateZ(0deg) scale3d(1,1,1) translate3d(0px,0px,"+radius+"px)";
+                 
+        /* For Firefox */
+        
+            faceStyle.MozBackfaceVisibility = backfaceVisibility
+            faceStyle.MozTransitionDuration = duration/1000+"s"
+            faceStyle.MozTransitionDelay = i*delay/1000+"s"
+    }
+    /* 
+    Some kind of hack for FF, it will not animate faces right after their creation, 
+    FF requires some kind of "ready" state for it, so let make this loop again after 0 timeout:
+    */
+    if ("MozTransform" in testFace.style) {
+        setTimeout(function(){
+            for (var i=0; i<=faces.length-1; i++) {
+                 
+                var hIndex = i - Math.floor(i/hSegments)*hSegments;
+                var vIndex = Math.floor(i/hSegments);
+                var newX = 360/(vSegments)*vIndex/2;
+                var newY = 360/(hSegments)*hIndex;
+                 
+                faces.item(i).style.MozTransform = "rotateX("+newX+"deg) rotateY("+newY+"deg) rotateZ(0deg) scale3d(1,1,1) translate3d(0px,0px,-"+radius+"px)";
+            }
+        },0)
+    }
 }
+$('body').on('mousemove',this,rotate);
+function rotate(e) {
+	var factor=10;
+	//$('#tester').html(e.pageX);
+	//alert(e.pageX);
+	$('#container3d').css('transform','rotateY('+(90+(e.pageX-w/2)/factor )+'deg)');
+	//$('#portfolio0 .front p').html(e.pageX+","+e.pageY);
+};
 </script>
 </html>
