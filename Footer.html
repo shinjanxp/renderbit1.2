@@ -6,12 +6,16 @@
 <style type="text/css">
 body {
   margin: 0px auto;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-family: Lato, Arial, sans-serif;
 }
 
 #footer {
   height: 30px;
   background-color: #333;
-  width: 100%
+  width: 100%;
   position: fixed;
   bottom: 0;
   color: #aaa;
@@ -56,6 +60,31 @@ body {
   color: #fff;
 }
 
+#loading-box {
+    width: 30%;
+    min-width: 200px !important;
+    background-color: #c00;
+    height: 50px;
+    border-radius: 10px;
+    border-color: #777;
+    border-style: solid;
+    border-width: 0.5em;
+    margin: 0px auto;
+    padding-top: 20px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+}
+    
+#loading-text {
+    width: 30%;
+    min-width: 200px !important;
+    position: absolute;
+    text-align: center;
+    margin: 0px auto;
+    font-size: 1.5em;
+    color: #ddd;
+}
 </style>
 
 </head>
@@ -65,6 +94,16 @@ body {
 
 <h3>Welcome to the real-time HTML editor!</h3>
 <p>Type HTML in the textarea above, and it will magically appear in the frame below.</p>
+    
+<div id="content">
+    <div id="loading-box">
+        
+        <span id="loading-text"><i class="fa fa-spinner fa-spin"></i>&nbsp;Loading...</span>
+    
+    </div>
+
+    
+</div>
 
 <div id="footer">
 <div class="pull-left" id="footer-left">
