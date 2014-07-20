@@ -1,11 +1,18 @@
 // JavaScript Document
 
-var radius=[-600,-900,-1000,-1200];
-var scale=[1,0.4,0.3,0.2]
-var rot=[[]];
+var radius=[-850,-900,-1000,-1200];
+var scale=[1,0.4,0.3,0.2];
+var d=12.5;
+var rot=[[0,0,0],[-d,d,0],[d,d,0],[-d,-d,0],[d,-d,0]];
 var newX,newY;
 function init_positions()
 {
+	$('.main').each(function(index, element) {
+        var index=$('.widget').index(this);
+		
+		prefix($(this),'transform',"rotateX("+rot[index][0]+"deg) rotateY("+rot[index][1]+"deg) rotateZ(0deg) scale("+scale[0]+") translateZ("+radius[0]+"px)");
+	
+    });
 	//alert('hi');
 	$('.sub').each(function() {
 			temp=Math.random();
@@ -31,11 +38,11 @@ function rotate(t,layer)
 	//var index=$('.widget').index(t);
 	if(Math.random()>0.5)
 	{
-		newY=-10-Math.random()*50;
+		newY=-10-Math.random()*40;
 	}
 	else
 	{
-		newY=10+Math.random()*50;
+		newY=10+Math.random()*40;
 	}
 	newX=-20+Math.random()*40;
 	//alert(t.attr('id')+","+newX+","+newY);

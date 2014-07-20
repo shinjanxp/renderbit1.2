@@ -10,16 +10,19 @@ $(document).ready(function() {
 	init_positions();
 	//dropdown();
 });
+window.onload=function(){
+	$('#background').css('z-index',2);
+}
 var temp;
 /*var tv=[140,140,h-80,h-80],lv=[50,50,50,50],yrot=[],xrot=[];
 var zv=[];
 var radius=[300,350,400,450];
 var scale=[1,0.5,0.4,0.3];*/
 function prefix(t,p,v){
-	$(t).css(p,v);
 	$(t).css("-webkit-"+p,v);
 	$(t).css("-moz-"+p,v);
 	$(t).css("-ms-"+p,v);
+	$(t).css(p,v);
 }
 /*function init_positions(){
 	$('#philosophy0').css('left',lv[0]=perc*w/2-200+'px');
@@ -120,8 +123,8 @@ function dropdown(){
     });
 }
 /*hover effects*/
-$('.widget').on('mouseenter',this,inmouse);
-$('.widget').on('mouseleave',this,outmouse);
+$('.widget').not('#logo').on('mouseenter',this,inmouse);
+$('.widget').not('#logo').on('mouseleave',this,outmouse);
 
 function inmouse(e) {
     var id=$(this).attr('id');
@@ -138,6 +141,7 @@ function inmouse(e) {
 	
 	/*dim everything else*/
 	$('.widget').not('.hovered').not('#logo').each(function(index, element) {
+		$(this).addClass('dimmed');
         if($(this).hasClass('layer2'))
 			$(this).addClass('dimmed-layer2');
 		else if($(this).hasClass('layer3'))
@@ -163,6 +167,7 @@ function outmouse(e) {
 	
 	/*remove dimming*/
 	$('.widget').not('.hovered').each(function(index, element) {
+		$(this).removeClass('dimmed');
         if($(this).hasClass('layer2'))
 			$(this).removeClass('dimmed-layer2');
 		else if($(this).hasClass('layer3'))
@@ -176,7 +181,7 @@ function outmouse(e) {
 
 var stack=["null","null"];
 var head=-1;
-$('.widget').on('click',this,arrange);
+$('.widget').not('#logo').on('click',this,arrange);
 var type;
 function arrange()
 {
@@ -209,12 +214,12 @@ function arrange()
        index=$('.widget').index(this);
 		x=radius*Math.cos(Math.PI/180*(90+i*angle));
 		y=radius*Math.sin(Math.PI/180*(90+i*angle));
-		x=x+0.5*1.4*w;
+		x=x+0.5*w;
 		y=-y+0.5*h;
 /*		alert(x+","+y);*/
 /*		x=x-0.5*$(this).width();
 		y=y-0.5*$(this).height();*/
-		//$(this).addClass('active-sub');
+		$(this).addClass('active-sub').removeClass('hovered');
 		prefix($(this),'transform','translateZ(10px) rotateY(0deg) rotateX(0deg) scale(0.8)');
 		$(this).animate({left:x, top:y},500,"easeOutCubic",function(){
 					$(this).on('click',this,zoomin);
@@ -250,30 +255,28 @@ function rearrange(){
 	$('.overlay').css('display','none');
 	
 	$('.'+type+'-widget').each(function(i, element) {
-		x=0;y=0;z=0;
        index=$('.widget').index(this);
-		x=lv[index];
-		y=tv[index];
-		$(this).removeClass('hovered');
+		
+		$(this).removeClass('active-sub');
 		var layer=getlayer($(this));
-		prefix($(this),'transform','translateZ(-'+zv[index]+'px) scale('+scale[layer]+') rotateY('+yrot[index]+'deg) rotateX('+xrot[index]+'deg) ');
-		$(this).animate({left:x, top:y},500,"easeOutCubic");
+		prefix($(this),'transform',"rotateX("+rot[index][0]+"deg) rotateY("+rot[index][1]+"deg) rotateZ(0deg) scale("+scale[layer]+") translateZ("+radius[layer]+"px)");
+		$(this).animate({left:"50%", top:"50%"},500,"easeOutCubic");
     });
 	temp='#'+type+'0';
-	if(temp=="#philosophy0")
+/*	if(temp=="#philosophy0")
 		$(temp).removeClass('active-top-left');
 	if(temp=="#rates0")
 		$(temp).removeClass('active-bottom-left');
 	if(temp=="#portfolio0")
 		$(temp).removeClass('active-top-right');
 	if(temp=="#contact0")
-		$(temp).removeClass('active-bottom-right');
-	$('.widget').on('click',this,arrange);
-	$('.widget').on('mouseenter',this,inmouse);
-	$('.widget').on('mouseleave',this,outmouse);
+		$(temp).removeClass('active-bottom-right');*/
+	//$('.widget').not('#logo').on('click',this,arrange);
+	$('.widget').not('#logo').on('mouseenter',this,inmouse);
+	$('.widget').not('#logo').on('mouseleave',this,outmouse);
 	$(temp).trigger('mouseleave');
-	$('.mother-wrapper').on('mousemove',this,rotate);
-	$('.widget').unbind('click').on('click',this,arrange);
+	$('.mother-wrapper').on('mousemove',this,revolve);
+	$('.widget').not('#logo').unbind('click').on('click',this,arrange);
 }
  /*alert($(this).attr('id'));
  
@@ -286,8 +289,11 @@ function zoomin() {
 	var id=$(this).attr('id');
 	$('#'+id+" .content-wrapper").addClass('flip');
 	$(this).addClass('viewing');
-	$(this).animate({left:"50%",top:"50%"},500,"easeOutCubic");
+	$(this).animate({left:"50%",top:"50%"},500,"easeOutCubic",function(){
+		prefix($(this),'transform',"rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3) translateZ(20px)");
+	});
 	$('.active-sub').not(this).animate({opacity:0.3},500,"easeOutCubic");
+	$('.overlay p').animate({opacity:0.3},500,"easeOutCubic");
 	$('.active-sub').unbind('click');
 	//$('#cross').unbind('click').on('click',this,zoomout);
 	$('.overlay').unbind('click').on('click',this,zoomout);
@@ -298,6 +304,7 @@ function zoomout() {
 	$('#'+id+" .content-wrapper").removeClass('flip')
 	$('#'+id).removeClass('viewing').animate({left:cx,top:cy},500,"easeOutCubic");
 	$('.active-sub').animate({opacity:1},500,"easeOutCubic");
+	prefix($('#'+id),'transform',"rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.8) translateZ(10px)");
 	$('.active-sub').on('click',this,zoomin);
 	//$('#cross').unbind('click').on('click',this,rearrange);
 	$('.overlay').unbind('click').on('click',this,rearrange);
