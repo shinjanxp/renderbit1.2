@@ -38,13 +38,13 @@ function rotate(t,layer)
 	//var index=$('.widget').index(t);
 	if(Math.random()>0.5)
 	{
-		newY=-10-Math.random()*40;
+		newY=-20-Math.random()*30;
 	}
 	else
 	{
-		newY=10+Math.random()*40;
+		newY=20+Math.random()*30;
 	}
-	newX=-20+Math.random()*40;
+	newX=-15+Math.random()*30;
 	//alert(t.attr('id')+","+newX+","+newY);
 	prefix(t,'transform',"rotateX("+newX+"deg) rotateY("+newY+"deg) rotateZ(0deg) scale("+scale[layer]+") translateZ("+radius[layer]+"px)");
 	$.merge(rot,[[newX,newY,0]]);

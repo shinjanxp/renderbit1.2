@@ -92,7 +92,8 @@ transform:translateZ(-10000px);
 	color:#fff;
 	position:absolute;
 	font-size:500%;
-	font-family:Interstate;
+	font-family:Interstate, sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	text-transform:uppercase;
 	color:white;
 }
@@ -134,7 +135,8 @@ transform:translateZ(-10000px);
 	
 	position:absolute;
 	text-align:center;
-	font-family:Interstate;
+	font-family:Interstate, sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	width:320px;
 	height:180px;
 	margin-left:-160px;
@@ -198,7 +200,8 @@ transform:translateZ(-10000px);
 	background-color:rgba(50,50,50,0.8);
 }
 .sub .back p{
-	font-family:Interstate;
+	font-family:Interstate, sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size:50%;
 	margin-top:10%;
 }
@@ -239,7 +242,7 @@ transform:translateZ(-10000px);
 
 /*css 3d translation*/
 .layer2{
-	opacity:0.9;
+	opacity:0.7;
 	-webkit-transform:translateZ(-2000px) scale(0.5);
 	-moz-transform:translateZ(-2000px) scale(0.6);
 	-ms-transform:translateZ(-2000px) scale(0.6);
@@ -247,7 +250,7 @@ transform:translateZ(-10000px);
 
 }
 .layer3{
-	opacity:0.8;
+	opacity:0.6;
 	-webkit-transform:translateZ(-4000px) scale(0.4);
 	-moz-transform:translateZ(-4000px) scale(0.5);
 	-ms-transform:translateZ(-4000px) scale(0.5);
@@ -255,7 +258,7 @@ transform:translateZ(-10000px);
 
 }
 .layer4{
-	opacity:0.7;
+	opacity:0.5;
 	-webkit-transform:translateZ(-6000px) scale(0.3);
 	-moz-transform:translateZ(-6000px) scale(0.4);
 	-ms-transform:translateZ(-6000px) scale(0.4);
@@ -285,8 +288,8 @@ transform:translateZ(-10000px);
 -webkit-filter:grayscale(100%);
 }
 .hovered .content-wrapper::after{
-	background-color:#00ffff;
-opacity:0.3;
+	background-color:#00aaff;
+opacity:0.5;
 z-index:25;
 }
 /*
@@ -467,7 +470,8 @@ filter:grayscale(100%);
 .inactive-widget{
 		position:absolute;
 	text-align:center;
-	font-family:Interstate;
+	font-family:Interstate, sans-serif;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	width:20%;
 	height:30%;
 	cursor:pointer;
@@ -482,6 +486,7 @@ filter:grayscale(100%);
   color: #aaa;
   font-family: 'Lato', sans-serif;
   font-size: 0.9em;
+  z-index:30;
 }
 
 #footer-left {
