@@ -20,10 +20,10 @@ var zv=[];
 var radius=[300,350,400,450];
 var scale=[1,0.5,0.4,0.3];*/
 function prefix(t,p,v){
-	$(t).css("-webkit-"+p,v);
+$(t).css("-webkit-"+p,v);
 	$(t).css("-moz-"+p,v);
 	$(t).css("-ms-"+p,v);
-	$(t).css(p,v);
+		$(t).css(p,v);
 }
 /*function init_positions(){
 	$('#philosophy0').css('left',lv[0]=perc*w/2-200+'px');
@@ -291,7 +291,8 @@ function zoomin() {
 	$('#'+id+" .content-wrapper").addClass('flip');
 	$(this).addClass('viewing');
 	$(this).animate({left:"50%",top:"50%"},500,"easeOutCubic",function(){
-		prefix($(this),'transform',"rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(3) translateZ(20px)");
+		prefix($(this),'transform',"rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1) translateZ(20px)");
+		$(this).animate({height:"80%",width:"80%",marginLeft:"-40%",marginTop:"-20%"},500,"easeOutCubic");
 	});
 	$('.active-sub').not(this).animate({opacity:0.3},500,"easeOutCubic");
 	$('.overlay p').animate({opacity:0.3},500,"easeOutCubic");
@@ -302,10 +303,11 @@ function zoomin() {
 }
 function zoomout() {
 	var id=$('.viewing').attr('id');
-	$('#'+id+" .content-wrapper").removeClass('flip')
+	$('#'+id+" .content-wrapper").removeClass('flip');
 	$('#'+id).removeClass('viewing').animate({left:cx,top:cy},500,"easeOutCubic");
 	$('.active-sub').animate({opacity:1},500,"easeOutCubic");
 	prefix($('#'+id),'transform',"rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.8) translateZ(10px)");
+	$('#'+id).animate({height:180,width:320,marginLeft:-160,marginTop:-90},500,"easeOutCubic");
 	$('.active-sub').on('click',this,zoomin);
 	//$('#cross').unbind('click').on('click',this,rearrange);
 	$('.overlay').unbind('click').on('click',this,rearrange);

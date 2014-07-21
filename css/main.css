@@ -35,16 +35,21 @@ position:fixed;
 width:100%;
 margin:0;
 
-z-index:20;
+z-index:0;
+transform:translateZ(-10000px);
 -webkit-transform:translateZ(-10000px);
 -moz-transform:translateZ(-10000px);
 -ms-transform:translateZ(-10000px);
-transform:translateZ(-10000px);
 }
 .mother-wrapper{
 
 	width:100%;
 	position:absolute;
+	transform-style:preserve-3d;
+	perspective:0px;
+	perspective-origin:center center;
+	transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+	transition-property:transform;
 	 -webkit-transform-style:preserve-3d;
     -webkit-perspective:0px;
     -webkit-perspective-origin:center center;
@@ -63,11 +68,6 @@ transform:translateZ(-10000px);
     -ms-origin:center center;
     -ms-transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg);
     -ms-transition-property:-moz-transform;
-	transform-style:preserve-3d;
-	perspective:0px;
-	perspective-origin:center center;
-	transform:rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-	transition-property:transform;
 	z-index:10;
 	
 }
@@ -80,10 +80,10 @@ transform:translateZ(-10000px);
 	position:absolute;
 	left:50%;
 	margin-left:-50%;
+	transform:translateZ(5px);
 	-webkit-transform: translateZ(0px);
 	-moz-transform:translateZ(5px);
 	-ms-transform:translateZ(5px);
-	transform:translateZ(5px);
 }
 .overlay p{
 	width:100%;
@@ -110,10 +110,10 @@ transform:translateZ(-10000px);
 	font-size:500%;
 	text-align:center;
 	color:white;
+	transform:translateZ(-600px);
 	-webkit-transform:translateZ(-900px);
 	-moz-transform:translateZ(-900px);
 	-ms-transform:translateZ(-900px);
-	transform:translateZ(-600px);
 
 }
 #cross{
@@ -125,10 +125,10 @@ transform:translateZ(-10000px);
 	color:white;
 	display:none;
 	cursor:pointer;
+	transform:translateZ(10px);
 	-webkit-transform: translateZ(10px);
 	-moz-transform:translateZ(10px) ;
 	-ms-transform:translateZ(10px);
-	transform:translateZ(10px);
 
 }
 .widget{
@@ -144,20 +144,20 @@ transform:translateZ(-10000px);
 	left:50%;
 	top:50%;
 	cursor:pointer;
+	transition:1s ease-out;
 	-webkit-transition:1s ease-out;
 	-moz-transition:1s ease-out;
 	-ms-transition:1s ease-out;
-	transition:1s ease-out;
 
+		transform-style:preserve-3d;
 	-webkit-transform-style:preserve-3d;
 	-moz-transform-style:preserve-3d;
 	-ms-transform-style:preserve-3d;
-		transform-style:preserve-3d;
 
+	transform-origin:50% 50%;
 	-webkit-transform-origin:50% 50%;
 	-moz-transform-origin:50% 50%;
 	-ms-transform-origin:50% 50%;
-	transform-origin:50% 50%;
 
 }
 
@@ -194,7 +194,9 @@ transform:translateZ(-10000px);
 	font-family:"Comic Sans MS", cursive;
 
 }
-	
+.main{
+	z-index:10;
+}
 .main .back p{
 	margin-top:10%;
 	background-color:rgba(50,50,50,0.8);
@@ -202,7 +204,7 @@ transform:translateZ(-10000px);
 .sub .back p{
 	font-family:Interstate, sans-serif;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size:50%;
+	font-size:100%;
 	margin-top:10%;
 }
 
@@ -242,27 +244,30 @@ transform:translateZ(-10000px);
 
 /*css 3d translation*/
 .layer2{
+	z-index:11;
 	opacity:0.7;
+/*	transform:translateZ(-2000px) scale(0.6);
 	-webkit-transform:translateZ(-2000px) scale(0.5);
 	-moz-transform:translateZ(-2000px) scale(0.6);
-	-ms-transform:translateZ(-2000px) scale(0.6);
-	transform:translateZ(-2000px) scale(0.6);
+	-ms-transform:translateZ(-2000px) scale(0.6);*/
 
 }
 .layer3{
+	z-index:12;
 	opacity:0.6;
+/*	transform:translateZ(-4000px) scale(0.5);
 	-webkit-transform:translateZ(-4000px) scale(0.4);
 	-moz-transform:translateZ(-4000px) scale(0.5);
-	-ms-transform:translateZ(-4000px) scale(0.5);
-	transform:translateZ(-4000px) scale(0.5);
+	-ms-transform:translateZ(-4000px) scale(0.5);*/
 
 }
 .layer4{
 	opacity:0.5;
+	z-index:13;
+/*	transform:translateZ(-6000px) scale(0.4);
 	-webkit-transform:translateZ(-6000px) scale(0.3);
 	-moz-transform:translateZ(-6000px) scale(0.4);
-	-ms-transform:translateZ(-6000px) scale(0.4);
-	transform:translateZ(-6000px) scale(0.4);
+	-ms-transform:translateZ(-6000px) scale(0.4);*/
 }
 .layer2 div::after, .layer3 div::after, .layer4 div::after{
 	content:"";
@@ -464,7 +469,8 @@ filter:grayscale(100%);
 	opacity:0;
 }
 .viewing{
-	
+	opacity:1;
+	z-index:20;
 	cursor:default;
 }
 .inactive-widget{

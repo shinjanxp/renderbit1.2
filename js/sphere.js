@@ -1,6 +1,6 @@
 // JavaScript Document
 
-var radius=[-850,-900,-1000,-1200];
+var radius=[-850,-1050,-1250,-1450];
 var scale=[1,0.4,0.3,0.2];
 var d=12.5;
 var rot=[[0,0,0],[-d,d,0],[d,d,0],[-d,-d,0],[d,-d,0]];
