@@ -16,12 +16,13 @@ function init_positions()
 	//alert('hi');
 	$('.sub').each(function() {
 			temp=Math.random();
-			if(temp<0.3)
+			if(temp<0.3 && temp>=0)
 			{
+				
 				$(this).addClass('layer2');
 				rotate($(this),1);
 			}
-			else if(temp<0.6)
+			else if(temp<0.6 && temp>=0.3)
 			{
 				$(this).addClass('layer3');
 				rotate($(this),2);
