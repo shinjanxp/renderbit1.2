@@ -3,13 +3,13 @@
 var radius=[-850,-1050,-1250,-1450];
 var scale=[1,0.4,0.3,0.2];
 var d=12.5;
-var rot=[[0,0,0],[-d,d,0],[d,d,0],[-d,-d,0],[d,-d,0]];
+var rot=[[-d,d,0],[d,d,0],[-d,-d,0],[d,-d,0]];
 var newX,newY;
 function init_positions()
 {
 	$('.main').each(function(index, element) {
         var index=$('.widget').index(this);
-		
+		alert(index);
 		prefix($(this),'transform',"rotateX("+rot[index][0]+"deg) rotateY("+rot[index][1]+"deg) rotateZ(0deg) scale("+scale[0]+") translateZ("+radius[0]+"px)");
 	
     });
